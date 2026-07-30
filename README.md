@@ -31,6 +31,58 @@ back with real evidence.
 These are independent of each other -- do them in any order, or as three separate Z.ai
 conversations if that gives cleaner context per pass.
 
+Two more standalone perspective audits were added afterward, following the same independent,
+verify-it-yourself methodology:
+
+4. **`4-indexing-architecture-audit.md`** -- does VERIDIAN maintain real, specialized indexes/
+   catalogs (source code, DB, API, service, config, metadata, dependency graph, search, knowledge
+   graph, event-driven sync), per the Owner's reference architecture, or is this mostly
+   aspirational?
+5. **`5-distributed-intelligence-architecture-audit.md`** -- does VERIDIAN have a real "Mini
+   VERIDIAN" / browser-side intelligence layer (metadata/knowledge/workflow caches, a rules engine,
+   browser AI, an MCP client, local automation), or is today's real browser-execution work
+   (`src/lib/browser-execution/`) narrower than that vision?
+
+Tasks 1-5 are all independent single-perspective audits -- run any of them in any order.
+
+## A second, sequential audit track: tasks 6-10 (consulting-style, multi-workstream review)
+
+Tasks 6-10 form a separate, more rigorous pass, structured the way a large consulting firm
+structures a multi-workstream engagement: four independent workstreams, each blind to the others,
+followed by one partner-level synthesis that reconciles all four.
+
+6. **`6-business-enduser-audit.md`** -- Business & End User Audit. 13 real-world perspectives
+   (CEO, COO, Business Owner, Construction Company, Interior Designer, PM, Site Engineer, Purchase,
+   HR, Finance, Vendor, Customer, End User). Judges usability and business value only --
+   explicitly ignores implementation details.
+7. **`7-technical-architecture-audit.md`** -- Technical Architecture Audit. CTO/Enterprise
+   Architect/Senior Software Architect/DB Architect/DevOps/Security/SaaS Architect perspectives.
+   Engineering quality only -- explicitly ignores business concerns.
+8. **`8-functional-erp-audit.md`** -- Functional ERP Audit. ERP/SAP/Oracle/Dynamics consultant, PM,
+   and QA Director perspectives. Exhaustive functional coverage of modules, functions, rules,
+   reports, workflows, and exceptions (two-tier: full-breadth inventory plus deep-dive on 8
+   representative modules).
+9. **`9-repository-traceability-audit.md`** -- Repository Traceability Audit. Coverage-only (does
+   not judge quality): for each real business capability, builds a UI -> API -> Service -> DB ->
+   Workflow -> Report -> Dashboard -> Audit Log traceability matrix, catching broken chains the
+   other three audits can miss.
+10. **`10-meta-audit-synthesis.md`** -- Meta-Audit + Root Cause + Gap Analysis + Roadmap. Reads
+    **only** the four saved findings files from tasks 6-9 (deliberately does not re-read the
+    codebase), reconciles them, clusters surface-level findings into root causes, produces a gap
+    analysis table, and sequences everything into an 11-stage implementation roadmap.
+
+**Required order -- read this before starting tasks 6-10:**
+- Tasks 6, 7, 8, and 9 are independent of each other -- run them in any order, and ideally as **4
+  separate Z.ai chat sessions** (one per task) for maximum independence between workstreams,
+  exactly like tasks 1-3 recommend.
+- **Task 10 MUST NOT be attempted until all four of `findings/business-enduser/*.md`,
+  `findings/technical-architecture/*.md`, `findings/functional-erp/*.md`, and
+  `findings/repository-traceability/*.md` actually exist in this repo as real, completed findings
+  files** (each ending in its own `STATUS: ... COMPLETE` line, saved via GitHub's web "Add file"
+  button, same as every other task in this repo). If you start task 10 before all four exist, stop
+  and say so -- task 10's own instructions require it to check this and refuse to proceed
+  otherwise.
+
 ## What you can and cannot access (real, checked 2026-07-30 -- verify it still holds for you)
 
 | Repo | Visibility | What that means for you |
@@ -53,7 +105,9 @@ guessing or skipping the live test.
 
 ## Required methodology (apply this inside EVERY task file, not just once overall)
 
-For each of the three task files:
+This methodology applies to every single-perspective task file (1-8; task 9 is deliberately an
+exception, see its own file for why; task 10 has its own distinct 4-part methodology, see its own
+file). For each of those task files:
 1. **Run the full analysis three separate times** (three independent passes -- do not just repeat
    your first answer with different wording; re-derive each pass from the source material).
 2. **Produce ONE distilled, deterministic (rules-and-logic-based) analysis** that reconciles all
@@ -94,8 +148,15 @@ gets acted on. Your job ends at producing the independent report -- not implemen
 1. Open a free Z.ai web-chat session, logged in as `raajat.agarwal@gmail.com`.
 2. Paste this repo's URL and ask Z.ai to read this `README.md`, then begin
    `tasks/1-owner-perspective-audit.md`.
-3. Repeat for tasks 2 and 3 (same session or a fresh one each time -- fresh sessions give more
-   independence between perspectives, which is arguably better for this specific goal).
+3. Repeat for tasks 2, 3, 4, and 5 (same session or a fresh one each time -- fresh sessions give
+   more independence between perspectives, which is arguably better for this specific goal). These
+   5 are fully independent of each other and of tasks 6-9.
 4. When Z.ai finishes a task and gives you the findings text plus a `STATUS: ... COMPLETE` line,
    copy the whole response and save it into this repo under the matching `findings/<perspective>/`
    folder via GitHub's web "Add file" button.
+5. For the second audit track, repeat steps 1-4 for tasks 6, 7, 8, and 9 -- ideally as 4 separate
+   Z.ai sessions, in any order.
+6. Only once all four of tasks 6-9 have a real, saved findings file with a `STATUS: ... COMPLETE`
+   line, start a fresh Z.ai session for `tasks/10-meta-audit-synthesis.md`. Do not start task 10
+   any earlier -- its own instructions require it to check for all 4 inputs and refuse to proceed
+   if any are missing.
