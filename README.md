@@ -36,8 +36,8 @@ conversations if that gives cleaner context per pass.
 | Repo | Visibility | What that means for you |
 |---|---|---|
 | `FChecklist/compliance-tracker` | **PUBLIC** | Fully readable by anyone, no login needed. This is where most of the real application code and `ai-os/` policy docs live. |
-| `FChecklist/projexa` | **PRIVATE** | You will almost certainly NOT be able to open this from a plain Z.ai browsing session. Try it first -- if you get a 404 / login wall, note that as a real access limitation in your findings rather than guessing at its contents. |
-| `FChecklist/claude-control` | **PRIVATE** | Same as above -- try, then record whether you could actually read it. |
+| `FChecklist/projexa` | **PUBLIC** (made public 2026-07-30 for this audit) | Should be fully readable from a plain Z.ai browsing session. |
+| `FChecklist/claude-control` | **PUBLIC** (made public 2026-07-30 for this audit) | Should be fully readable from a plain Z.ai browsing session. |
 | `FChecklist/zai-independent-audit-2026-07-30` (this repo) | **PUBLIC** | You can read it. **Never put secrets, passwords, or API keys into this repo -- it is public.** |
 
 There is **no SSH key, server login, or shell access** for you, and none will be provided -- that
